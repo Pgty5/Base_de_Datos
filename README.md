@@ -1,1 +1,2 @@
-# Base_de_Datos
+Integrantes :  
+- Abel Leandro Quispe Arámbulo  
