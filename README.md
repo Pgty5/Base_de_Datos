@@ -1,2 +1,3 @@
 Integrantes :  
-- Abel Leandro Quispe Arámbulo  
+- Abel Leandro Quispe Arámbulo
+- Luis Carlos Unancha Chavez
