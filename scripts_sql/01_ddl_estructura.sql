@@ -26,3 +26,9 @@ CREATE TABLE reserva (
     id_huesped INT,
     id_habitacion INT
 );
+
+CREATE TABLE estd_habitacion (
+    id_estado INT,
+    nombre_estado VARCHAR(20),
+    descripcion TEXT
+);
