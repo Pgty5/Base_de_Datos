@@ -167,3 +167,8 @@ CHECK (cantidad > 0);
 ALTER TABLE consumo_srvc
 ADD CONSTRAINT ck_consumo_srvicio_sub_total
 CHECK (sub_total >= 0);
+-- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°EMPLEADO
+ALTER TABLE rol_empleado
+ADD CONSTRAINT pk_rol_empleado PRIMARY KEY (id_rol);
+ALTER TABLE rol_empleado
+ALTER COLUMN descripcion SET NOT NULL;
