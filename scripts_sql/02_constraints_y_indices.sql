@@ -89,3 +89,39 @@ ALTER COLUMN nombre_estado SET NOT NULL;
 
 ALTER TABLE estd_habitacion
 ADD CONSTRAINT uk_estd_habitacion_nombre_estado UNIQUE (nombre_estado);
+
+-- constraints tabla empleado
+ALTER TABLE empleado
+ADD CONSTRAINT pk_empleado PRIMARY KEY (id_empleado);
+
+ALTER TABLE empleado
+ALTER COLUMN nombre SET NOT NULL;
+
+ALTER TABLE empleado
+ALTER COLUMN apellido SET NOT NULL;
+
+ALTER TABLE empleado
+ALTER COLUMN dni SET NOT NULL;
+
+ALTER TABLE empleado
+ALTER COLUMN telefono SET NOT NULL;
+
+ALTER TABLE empleado
+ALTER COLUMN id_rol SET NOT NULL;
+
+ALTER TABLE empleado
+ALTER COLUMN id_turno SET NOT NULL;
+
+ALTER TABLE empleado
+ADD CONSTRAINT uk_empleado_dni UNIQUE (dni);
+
+ALTER TABLE empleado
+ADD CONSTRAINT uk_empleado_correo UNIQUE (correo);
+
+ALTER TABLE empleado
+ADD CONSTRAINT fk_empleado_rol FOREIGN KEY (id_rol)
+REFERENCES rol_empleado(id_rol);
+
+ALTER TABLE empleado
+ADD CONSTRAINT fk_empleado_turno FOREIGN KEY (id_turno)
+REFERENCES turno(id_turno);
