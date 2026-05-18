@@ -181,3 +181,18 @@ ALTER TABLE turno
 ALTER COLUMN hr_fin SET NOT NULL;
 ALTER TABLE turno
 ALTER COLUMN descripcion SET NOT NULL;
+-- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°HABITACION
+ALTER TABLE habitacion
+ADD CONSTRAINT pk_habitacion PRIMARY KEY (id_habitacion);
+ALTER TABLE habitacion
+ALTER COLUMN nro_habitacion SET NOT NULL;
+ALTER TABLE habitacion
+ALTER COLUMN piso SET NOT NULL;
+ALTER TABLE habitacion
+ALTER COLUMN capacidad SET NOT NULL;
+ALTER TABLE habitacion
+ALTER COLUMN precio_base SET NOT NULL;
+ALTER TABLE habitacion
+ALTER COLUMN id_estado SET NOT NULL;
+ALTER TABLE habitacion
+ADD CONSTRAINT uk_habitacion UNIQUE (nro_habitacion);
