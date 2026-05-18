@@ -54,3 +54,7 @@ CREATE TABLE consumo_srvicio (
     id_servicio INT,
     id_empleado INT
 );
+CREATE TABLE rol_empleado(
+    id_rol INTEGER,
+    description VARCHAR(50)
+    );
