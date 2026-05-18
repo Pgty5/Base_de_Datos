@@ -16,3 +16,13 @@ CREATE TABLE huesped (
     historial TEXT,
     telefono VARCHAR(15),
 );
+
+CREATE TABLE reserva (
+    id_reserva INT,
+    fch_reserva DATE,
+    fch_inicio DATE,
+    fch_fin DATE,
+    estado_reserva VARCHAR(20),
+    id_huesped INT,
+    id_habitacion INT
+);
