@@ -125,3 +125,45 @@ REFERENCES rol_empleado(id_rol);
 ALTER TABLE empleado
 ADD CONSTRAINT fk_empleado_turno FOREIGN KEY (id_turno)
 REFERENCES turno(id_turno);
+
+-- constraints tabla consumo_srvc
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT pk_consumo_srvc PRIMARY KEY (id_consumo_srvc);
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN fch_consumo SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN cantidad SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN sub_total SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN id_estadia SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN id_servicio SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ALTER COLUMN id_empleado SET NOT NULL;
+
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT fk_consumo_srvicio_estadia FOREIGN KEY (id_estadia)
+REFERENCES estadia(id_estadia);
+
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT fk_consumo_srvicio_servicio FOREIGN KEY (id_servicio)
+REFERENCES servicio(id_servicio);
+
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT fk_consumo_srvicio_empleado FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT ck_consumo_srvicio_cantidad
+CHECK (cantidad > 0);
+
+ALTER TABLE consumo_srvc
+ADD CONSTRAINT ck_consumo_srvicio_sub_total
+CHECK (sub_total >= 0);
