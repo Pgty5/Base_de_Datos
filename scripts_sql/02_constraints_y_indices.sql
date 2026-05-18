@@ -172,3 +172,12 @@ ALTER TABLE rol_empleado
 ADD CONSTRAINT pk_rol_empleado PRIMARY KEY (id_rol);
 ALTER TABLE rol_empleado
 ALTER COLUMN descripcion SET NOT NULL;
+-- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°TURNO
+ALTER TABLE turno
+ADD CONSTRAINT pk_turno PRIMARY KEY (id_turno);
+ALTER TABLE turno
+ALTER COLUMN hr_inicio SET NOT NULL;
+ALTER TABLE turno
+ALTER COLUMN hr_fin SET NOT NULL;
+ALTER TABLE turno
+ALTER COLUMN descripcion SET NOT NULL;
