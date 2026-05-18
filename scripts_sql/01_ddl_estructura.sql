@@ -74,12 +74,20 @@ CREATE TABLE habitacion (
 );
 CREATE TABLE mantenimiento (
     id_mantenimiento     INTEGER,
-    fch_inicio           DATE,
-    fch_fin              DATE,
-    motivo               VARCHAR(100),
-    descripcion          VARCHAR(200),
-    estado_mantenimiento VARCHAR(50),
-    costo                NUMERIC(8,2),
-    id_habitacion        INTEGER,
-    id_empleado          INTEGER
+    fch_inicio  DATE,
+    fch_fin  DATE,
+    motivo  VARCHAR(100),
+    descripcion     VARCHAR(200),
+    estado_mant      VARCHAR(50),
+    costo      NUMERIC(8,2),
+    id_habitacion    INTEGER,
+    id_empleado         INTEGER
+);
+
+CREATE TABLE cancelacion_reserva (
+    id_cancelacion INTEGER,
+    motivo  VARCHAR(200),
+    fecha    DATE,
+    penalidad     NUMERIC(8,2),
+    id_reserva    INTEGER
 );
