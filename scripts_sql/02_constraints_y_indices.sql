@@ -196,3 +196,21 @@ ALTER TABLE habitacion
 ALTER COLUMN id_estado SET NOT NULL;
 ALTER TABLE habitacion
 ADD CONSTRAINT uk_habitacion UNIQUE (nro_habitacion);
+-- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°MANTENIMIENTO
+ALTER TABLE mantenimiento
+ADD CONSTRAINT pk_mantenimiento PRIMARY KEY (id_mantenimiento);
+ALTER TABLE mantenimiento
+ALTER COLUMN fch_inicio SET NOT NULL;
+ALTER TABLE mantenimiento
+ALTER COLUMN fch_fin SET NOT NULL;
+ALTER TABLE mantenimiento
+ALTER COLUMN motivo SET NOT NULL;
+ALTER TABLE mantenimiento
+ALTER COLUMN estado_mant SET NOT NULL;
+ALTER TABLE mantenimiento
+ALTER COLUMN id_habitacion SET NOT NULL;
+ALTER TABLE mantenimiento
+ALTER COLUMN id_empleado SET NOT NULL;
+ALTER TABLE mantenimiento
+ADD CONSTRAINT ck_mantenimiento_fechas
+CHECK (fch_fin >= fch_inicio);
