@@ -214,3 +214,13 @@ ALTER COLUMN id_empleado SET NOT NULL;
 ALTER TABLE mantenimiento
 ADD CONSTRAINT ck_mantenimiento_fechas
 CHECK (fch_fin >= fch_inicio);
+
+-- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°CANCELACION
+ALTER TABLE cancelacion_reserva
+ADD CONSTRAINT pk_cancelacion_reserva PRIMARY KEY (id_cancelacion);
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN motivo SET NOT NULL;
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN fecha SET NOT NULL;
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN id_reserva SET NOT NULL;
