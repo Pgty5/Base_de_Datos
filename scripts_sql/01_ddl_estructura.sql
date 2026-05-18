@@ -43,3 +43,14 @@ CREATE TABLE empleado (
     id_rol INT,
     id_turno INT
 );
+
+CREATE TABLE consumo_srvicio (
+    id_consumo_srvc INT,
+    fch_consumo DATE,
+    cantidad INT,
+    sub_total NUMERIC(5,2),
+    descripcion TEXT,
+    id_estadia INT,
+    id_servicio INT,
+    id_empleado INT
+);
