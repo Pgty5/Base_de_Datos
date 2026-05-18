@@ -32,3 +32,14 @@ CREATE TABLE estd_habitacion (
     nombre_estado VARCHAR(20),
     descripcion TEXT
 );
+
+CREATE TABLE empleado (
+    id_empleado INT,
+    nombre VARCHAR(25),
+    apellido VARCHAR(25),
+    dni CHAR(8),
+    telefono VARCHAR(15),
+    correo VARCHAR(25),
+    id_rol INT,
+    id_turno INT
+);
