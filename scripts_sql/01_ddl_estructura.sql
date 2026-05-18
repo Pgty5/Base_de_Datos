@@ -64,3 +64,12 @@ CREATE TABLE turno (
     hr_fin TIME,
     descripcion VARCHAR(100)
 );
+CREATE TABLE habitacion (
+    id_habitacion INTEGER,
+    nro_habitacion INTEGER,
+    piso INTEGER,
+    capacidad  INTEGER,
+    precio_base NUMERIC(8,2),
+    id_estado INTEGER
+);
+   
