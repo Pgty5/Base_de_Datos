@@ -1,3 +1,4 @@
+--constraints tabla estadia
 ALTER TABLE estadia
 ADD CONSTRAINT pk_estadia PRIMARY KEY (id_estadia);
 
@@ -21,3 +22,22 @@ REFERENCES reserva(id_reserva);
 ALTER TABLE estadia 
 ADD CONSTRAINT ck_estadia_fechas
 CHECK (fch_salida >= fch_ingreso);
+
+--constraints tabla huesped
+ALTER TABLE huesped
+ADD CONSTRAINT pk_huesped PRIMARY KEY (id_huesped);
+
+ALTER TABLE huesped
+ALTER COLUMN nombre SET NOT NULL;
+
+ALTER TABLE huesped
+ALTER COLUMN apellido SET NOT NULL;
+
+ALTER TABLE huesped
+ALTER COLUMN dni SET NOT NULL;
+
+ALTER TABLE huesped
+ALTER COLUMN historial SET NOT NULL;
+
+ALTER TABLE huesped
+ADD CONSTRAINT uk_huesped_dni UNIQUE (dni);
