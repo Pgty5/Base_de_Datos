@@ -56,5 +56,11 @@ CREATE TABLE consumo_srvicio (
 );
 CREATE TABLE rol_empleado(
     id_rol INTEGER,
-    description VARCHAR(50)
-    );
+    descripcion VARCHAR(50)
+);
+CREATE TABLE turno (
+    id_turno  INTEGER,
+    hr_inicio TIME,
+    hr_fin TIME,
+    descripcion VARCHAR(100)
+);
