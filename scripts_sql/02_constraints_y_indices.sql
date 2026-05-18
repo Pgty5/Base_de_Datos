@@ -79,3 +79,13 @@ REFERENCES empleado(id_empleado);
 ALTER TABLE reserva
 ADD CONSTRAINT ck_reserva_cantidad_personas
 CHECK (cantidad_personas > 0);
+
+--constraints tabla estd_habitacion
+ALTER TABLE estd_habitacion
+ADD CONSTRAINT pk_estd_habitacion PRIMARY KEY (id_estado);
+
+ALTER TABLE estd_habitacion
+ALTER COLUMN nombre_estado SET NOT NULL;
+
+ALTER TABLE estd_habitacion
+ADD CONSTRAINT uk_estd_habitacion_nombre_estado UNIQUE (nombre_estado);
