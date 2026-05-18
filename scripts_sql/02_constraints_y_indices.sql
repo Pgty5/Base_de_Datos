@@ -41,3 +41,41 @@ ALTER COLUMN historial SET NOT NULL;
 
 ALTER TABLE huesped
 ADD CONSTRAINT uk_huesped_dni UNIQUE (dni);
+
+--constraints tabla reserva 
+ALTER TABLE reserva
+ADD CONSTRAINT pk_reserva PRIMARY KEY (id_reserva);
+
+ALTER TABLE reserva
+ALTER COLUMN fch_reserva SET NOT NULL;
+
+ALTER TABLE reserva
+ALTER COLUMN estado_reserva SET NOT NULL;
+
+ALTER TABLE reserva
+ALTER COLUMN cantidad_personas SET NOT NULL;
+
+ALTER TABLE reserva
+ALTER COLUMN id_huesped SET NOT NULL;
+
+ALTER TABLE reserva
+ALTER COLUMN id_habitacion SET NOT NULL;
+
+ALTER TABLE reserva
+ALTER COLUMN id_empleado SET NOT NULL;
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_huesped FOREIGN KEY (id_huesped)
+REFERENCES huesped(id_huesped);
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_habitacion FOREIGN KEY (id_habitacion)
+REFERENCES habitacion(id_habitacion);
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_empleado FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
+ALTER TABLE reserva
+ADD CONSTRAINT ck_reserva_cantidad_personas
+CHECK (cantidad_personas > 0);
