@@ -105,5 +105,14 @@ CREATE TABLE mtd_pago (
     descripcion TEXT
 );
 
+CREATE TABLE pago (
+    id_pago INT,
+    fch_pago DATE,
+    monto_total NUMERIC(10,2),
+    estado_pago VARCHAR(20),
+    id_reserva INT,
+    id_metodo INT
+);
+    
 
 
