@@ -94,14 +94,14 @@ CREATE TABLE cancelacion_reserva (
 
 CREATE TABLE servicio (
     id_servicio INT,
-    nombre_servicio VARCHAR(100) NOT NULL,
+    nombre_servicio VARCHAR(100),
     descripcion TEXT,
-    precio_unitario NUMERIC(10,2) NOT NULL
+    precio_unitario NUMERIC(10,2)
 );
 
 CREATE TABLE mtd_pago (
     id_metodo INT,
-    nombre_pago VARCHAR(50) NOT NULL,
+    nombre_pago VARCHAR(50),
     descripcion TEXT
 );
 
