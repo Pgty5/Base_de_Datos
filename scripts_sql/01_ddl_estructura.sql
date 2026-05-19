@@ -114,6 +114,14 @@ CREATE TABLE pago (
     id_metodo INT
 );
 
+CREATE TABLE detalle_pago (
+    id_detalle INT,
+    monto_abonado NUMERIC(10,2),
+    descripcion TEXT,
+    id_pago INT,
+    id_servicio INT
+);
+
 CREATE TABLE comprobante (
     id_comprobante INT,
     serie VARCHAR(20),
