@@ -271,7 +271,7 @@ REFERENCES servicio(id_servicio);
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°comprobante
 ALTER TABLE comprobante
 ALTER COLUMN id_comprobante SET NOT NULL,
-ALTER COLUMN serio SET NOT NULL,
+ALTER COLUMN serie SET NOT NULL,
 ALTER COLUMN fch emision SET NOT NULL,
 ALTER COLUMN id_pago SET NOT NULL;
 ALTER TABLE comprobante
