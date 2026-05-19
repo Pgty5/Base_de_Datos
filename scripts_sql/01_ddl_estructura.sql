@@ -91,3 +91,12 @@ CREATE TABLE cancelacion_reserva (
     penalidad     NUMERIC(8,2),
     id_reserva    INTEGER
 );
+
+CREATE TABLE servicio (
+    id_servicio INT,
+    nombre_servicio VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio_unitario NUMERIC(10,2) NOT NULL
+);
+
+
