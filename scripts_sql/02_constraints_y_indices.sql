@@ -255,3 +255,16 @@ ADD CONSTRAINT pk_pago PRIMARY KEY (id_pago),
 ADD CONSTRAINT ck_pago_monto CHECK (monto_total>=0),
 ADD CONSTRAINT fk_pago_mtd_pago FOREIGN KEY (id_metodo)
 REFERENCES mtd_pago(id_metodo);
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°detalle_pago
+ALTER TABLE detalle_pago
+ALTER COLUMN id_detalle SET NOT NULL, 
+ALTER COLUMN monto_abonado SET NOT NULL,
+ALTER COLUMN id_pago SET NOT NULL,
+ALTER COLUMN id_servicio SET NOT NULL;
+ALTER TABLE detalle_pago
+ADD CONSTRAINT pk_detalle_pago PRIMARY KEY (id_detalle),
+ADD CONSTRAINT fk_detalle_pago_pago FOREIGN KEY (id_pago)
+REFERENCES pago(id_pago),
+ADD CONSTRAINT fk_detalle_pago_servicio FOREIGN KEY (id_servicio)
+REFERENCES servicio(id_servicio);
+
