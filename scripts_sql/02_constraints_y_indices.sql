@@ -225,7 +225,7 @@ ALTER COLUMN fecha SET NOT NULL;
 ALTER TABLE cancelacion_reserva
 ALTER COLUMN id_reserva SET NOT NULL;
 
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°servicio
+--°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°servicio
 ALTER TABLE servicio
 ALTER COLUMN id_servicio SET NOT NULL,
 ALTER COLUMN nombre_servicio SET NOT NULL,
@@ -235,7 +235,7 @@ ADD CONSTRAINT pk_servicio PRIMARY KEY (id_servicio),
 ADD CONSTRAINT uk_servicio_nombre UNIQUE (nombre_servicio),
 ADD CONSTRAINT ck_servicio_precio CHECK (precio_unitario >= 0);
 
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°mtd_pago
+--°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°mtd_pago
 ALTER TABLE mtd_pago
 ALTER COLUMN id_metodo SET NOT NULL,
 ALTER COLUMN nombre_pago SET NOT NULL;
@@ -243,7 +243,7 @@ ALTER TABLE mtd_pago
 ADD CONSTRAINT pk_mtd_pago PRIMARY KEY (id_metodo),
 ADD  CONSTRAINT uk_mtd_pago_nombre UNIQUE (nombre_pago);
 
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°pago
+--°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°pago
 ALTER TABLE pago
 ALTER COLUMN id_pago SET NOT NULL,
 ALTER COLUMN fch_pago SET NOT NULL,
@@ -255,7 +255,7 @@ ADD CONSTRAINT pk_pago PRIMARY KEY (id_pago),
 ADD CONSTRAINT ck_pago_monto CHECK (monto_total>=0),
 ADD CONSTRAINT fk_pago_mtd_pago FOREIGN KEY (id_metodo)
 REFERENCES mtd_pago(id_metodo);
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°detalle_pago
+--°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°detalle_pago
 ALTER TABLE detalle_pago
 ALTER COLUMN id_detalle SET NOT NULL, 
 ALTER COLUMN monto_abonado SET NOT NULL,
@@ -268,7 +268,7 @@ REFERENCES pago(id_pago),
 ADD CONSTRAINT fk_detalle_pago_servicio FOREIGN KEY (id_servicio)
 REFERENCES servicio(id_servicio);
 
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°comprobante
+--°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°comprobante
 ALTER TABLE comprobante
 ALTER COLUMN id_comprobante SET NOT NULL,
 ALTER COLUMN serie SET NOT NULL,
