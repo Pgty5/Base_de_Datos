@@ -224,3 +224,15 @@ ALTER TABLE cancelacion_reserva
 ALTER COLUMN fecha SET NOT NULL;
 ALTER TABLE cancelacion_reserva
 ALTER COLUMN id_reserva SET NOT NULL;
+
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°servicio
+ALTER TABLE servicio
+ALTER COLUMN id_servicio SET NOT NULL,
+ALTER COLUMN nombre_servicio SET NOT NULL,
+ALTER COLUMN precio_unitario SET NOT NULL;
+ALTER TABLE
+ADD CONSTRAINT pk_servicio PRIMARY KEY (id_servicio),
+ADD CONSTRAINT uk_servicio_nombre UNIQUE (nombre_servicio),
+ADD CONSTRAINT ck_servicio_precio CHECK (precio_unitario >= 0);
+
+
