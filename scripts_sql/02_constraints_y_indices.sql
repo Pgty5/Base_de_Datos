@@ -242,3 +242,16 @@ ALTER COLUMN nombre_pago SET NOT NULL;
 ALTER TABLE mtd_pago
 ADD CONSTRAINT pk_mtd_pago PRIMARY KEY (id_metodo),
 ADD  CONSTRAINT uk_mtd_pago_nombre UNIQUE (nombre_pago);
+
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°pago
+ALTER TABLE pago
+ALTER COLUMN id_pago SET NOT NULL,
+ALTER COLUMN fch_pago SET NOT NULL,
+ALTER COLUMN monto_total SET NOT NULL,
+ALTER COLUMN id_reserva SET NOT NULL,
+ALTER COLUMN id:metodo SET NOT NULL;
+ALTER TABLE pago
+ADD CONSTRAINT pk_pago PRIMARY KEY (id_pago),
+ADD CONSTRAINT ck_pago_monto CHECK (monto_total>=0),
+ADD CONSTRAINT fk_pago_mtd_pago FOREIGN KEY (id_metodo)
+REFERENCES mtd_pago(id_metodo);
