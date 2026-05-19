@@ -268,3 +268,14 @@ REFERENCES pago(id_pago),
 ADD CONSTRAINT fk_detalle_pago_servicio FOREIGN KEY (id_servicio)
 REFERENCES servicio(id_servicio);
 
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°comprobante
+ALTER TABLE comprobante
+ALTER COLUMN id_comprobante SET NOT NULL,
+ALTER COLUMN serio SET NOT NULL,
+ALTER COLUMN fch emision SET NOT NULL,
+ALTER COLUMN id_pago SET NOT NULL;
+ALTER TABLE comprobante
+ADD CONSTRAINT pk_comprobante PRIMARY KEY (id_comprobante),
+ADD CONSTRAINT uk_comprobante UNIQUE (serie),
+ADD CONSTRAINT fk_comprobante_pago FOREIGN KEY (id_pago)
+REFERENCES pago(id_pago);
