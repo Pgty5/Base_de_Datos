@@ -235,4 +235,10 @@ ADD CONSTRAINT pk_servicio PRIMARY KEY (id_servicio),
 ADD CONSTRAINT uk_servicio_nombre UNIQUE (nombre_servicio),
 ADD CONSTRAINT ck_servicio_precio CHECK (precio_unitario >= 0);
 
-
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°mtd_pago
+ALTER TABLE mtd_pago
+ALTER COLUMN id_metodo SET NOT NULL,
+ALTER COLUMN nombre_pago SET NOT NULL;
+ALTER TABLE mtd_pago
+ADD CONSTRAINT pk_mtd_pago PRIMARY KEY (id_metodo),
+ADD  CONSTRAINT uk_mtd_pago_nombre UNIQUE (nombre_pago);
