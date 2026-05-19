@@ -99,4 +99,11 @@ CREATE TABLE servicio (
     precio_unitario NUMERIC(10,2) NOT NULL
 );
 
+CREATE TABLE mtd_pago (
+    id_metodo INT,
+    nombre_pago VARCHAR(50) NOT NULL,
+    descripcion TEXT
+);
+
+
 
