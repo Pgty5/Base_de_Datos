@@ -113,6 +113,14 @@ CREATE TABLE pago (
     id_reserva INT,
     id_metodo INT
 );
+
+CREATE TABLE comprobante (
+    id_comprobante INT,
+    serie VARCHAR(20),
+    fch_emision DATE,
+    descripcion TEXT,
+    id_pago INT
+);
     
 
 
