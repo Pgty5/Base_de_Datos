@@ -1,4 +1,4 @@
 Integrantes :  
-- Abel Leandro Quispe Arámbulo
-- Luis Carlos Unancha Chavez
+- Abel Leandro Quispe Arámbulo (Pgty5)
+- Luis Carlos Unancha Chavez (Madagio)
 - Yohan Alexis Durand Huayllasi
