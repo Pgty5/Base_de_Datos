@@ -11,3 +11,10 @@ VALUES (1, 'Hospedaje Habitacion Simple' , 'Servicio de alojamiento simple por n
 (3,'Servicio de Minibar', 'Consumo de bebidas y snacks en la habitacion', 8.00),
 (4,'Acceso a Spa y Masajes','Uso de instalaciones de relajacion por hora', 20.00),
 (5,'Almuerzo Ejecutivo Hotelero','Menu completo servido en el restaurante principal',15.00);
+
+INSERT INTO mtd_pago (id_metodo, nombre_pago,descripcion) 
+VALUES (1, 'Pago por Efectivo','Pago Fisico'),
+(2,'Pago por Tarjeta','Pago electronico'),
+(3,'Transferencia Bancaria','Transferencia directa'),
+(4,'Billetera Digital','Pago por aplicaciones'),
+(5,'Pago por Criptomonedas','Uso de criptomonedas como metodo de pago');
