@@ -69,3 +69,10 @@ INSERT INTO habitacion (id_habitacion, nro_habitacion, piso, capacidad, precio_b
 (3, 201, 2, 3, 220.00, 2),
 (4, 202, 2, 4, 300.00, 5),
 (5, 301, 3, 2, 180.00, 3);
+
+INSERT INTO mantenimiento (id_mantenimiento, fch_inicio, fch_fin, motivo, descripcion, estado_mant, costo, id_habitacion, id_empleado) VALUES
+(1, '2025-01-05', '2025-01-06', 'Fuga de agua',       'Reparación de tubería en el baño', 'Finalizado', 120.00, 5, 4),
+(2, '2025-02-10', '2025-02-11', 'Aire acondicionado', 'Cambio de filtro del aire',        'Finalizado',  90.00, 3, 4),
+(3, '2025-03-01', '2025-03-02', 'Pintura',            'Repintado de paredes',             'Finalizado', 200.00, 5, 4),
+(4, '2025-03-15', '2025-03-15', 'Cerradura',          'Cambio de chapa electrónica',      'Finalizado',  75.00, 1, 4),
+(5, '2025-04-01', '2025-04-03', 'Eléctrico',          'Revisión del cableado'
