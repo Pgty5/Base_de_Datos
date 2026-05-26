@@ -19,12 +19,22 @@ INSERT INTO estadia(id_estadia, fch_ingreso, fch_salida, hr_ingreso, hr_salida, 
 (4, '2026-05-13', '2026-05-14', '16:00', '10:00', 3, 4),
 (5, '2026-05-14', '2026-05-17', '14:20', '11:00', 2, 5);
 
+INSERT INTO reserva (id_reserva, fch_reserva, estado_reserva, cantidad_personas, id_huesped, id_habitacion, id_empleado)
+VALUES
+(5001, '2026-05-08', 'Confirmada', 2, 1, 1, 1),
+(5002, '2026-05-09', 'Confirmada', 2, 2, 2, 2),
+(5003, '2026-05-10', 'Confirmada', 3, 3, 3, 1),
+(5004, '2026-05-11', 'Pendiente', 4, 4, 4, 2),
+(5005, '2026-05-12', 'Confirmada', 2, 5, 5, 1);
+
 INSERT INTO servicio (id_servicio, nombre_servicio, descripcion, precio_unitario) 
 VALUES (1, 'Hospedaje Habitacion Simple' , 'Servicio de alojamiento simple por noche', 15.00),
 (2,'Hospedaje Habitacion Doble', 'Servicio de alojamiento para dos Personas por noche', 30.00),
 (3,'Servicio de Minibar', 'Consumo de bebidas y snacks en la habitacion', 8.00),
 (4,'Acceso a Spa y Masajes','Uso de instalaciones de relajacion por hora', 20.00),
 (5,'Almuerzo Ejecutivo Hotelero','Menu completo servido en el restaurante principal',15.00);
+
+
 
 INSERT INTO mtd_pago (id_metodo, nombre_pago,descripcion) 
 VALUES (1, 'Pago por Efectivo','Pago Fisico'),
