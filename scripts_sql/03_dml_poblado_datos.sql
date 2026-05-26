@@ -18,3 +18,11 @@ VALUES (1, 'Pago por Efectivo','Pago Fisico'),
 (3,'Transferencia Bancaria','Transferencia directa'),
 (4,'Billetera Digital','Pago por aplicaciones'),
 (5,'Pago por Criptomonedas','Uso de criptomonedas como metodo de pago');
+
+INSERT INTO pago (id_pago, fch_pago, monto_total, estado_pago, id_reserva, id_metodo)
+VALUES (101, '2026-05-15', 45.00, 'Pagado', 5001, 1),
+(102, '2026-05-16', 95.00, 'Pagado', 5002, 2),
+(103, '2026-05-18', 60.00, 'Pagado', 5003, 2),
+(104, '2026-05-20', 50.00, 'Pendiente', 5004, 3),
+(105, '2026-05-22', 125.00, 'Pagado', 5005, 4);
+
