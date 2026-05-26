@@ -76,3 +76,10 @@ INSERT INTO mantenimiento (id_mantenimiento, fch_inicio, fch_fin, motivo, descri
 (3, '2025-03-01', '2025-03-02', 'Pintura',            'Repintado de paredes',             'Finalizado', 200.00, 5, 4),
 (4, '2025-03-15', '2025-03-15', 'Cerradura',          'Cambio de chapa electrónica',      'Finalizado',  75.00, 1, 4),
 (5, '2025-04-01', '2025-04-03', 'Eléctrico',          'Revisión del cableado'
+
+INSERT INTO cancelacion_reserva (id_cancelacion, motivo, fecha, penalidad, id_reserva) VALUES
+(1, 'Cambio de planes del huésped',     '2025-03-13', 50.00, 5001),
+(2, 'Vuelo cancelado',                  '2025-03-14', 30.00, 5002),
+(3, 'Emergencia familiar',              '2025-03-14',  0.00, 5003),
+(4, 'Error en la fecha de reserva',     '2025-03-15', 25.00, 5004),
+(5, 'Insatisfacción con la habitación', '2025-03-16', 40.00, 5005);
