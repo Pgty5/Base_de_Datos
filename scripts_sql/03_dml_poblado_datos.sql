@@ -63,3 +63,9 @@ INSERT INTO turno (id_turno, hr_inicio, hr_fin, descripcion) VALUES
 (4, '08:00', '17:00', 'Turno administrativo'),
 (5, '09:00', '18:00', 'Turno mixto');
 
+INSERT INTO habitacion (id_habitacion, nro_habitacion, piso, capacidad, precio_base, id_estado) VALUES
+(1, 101, 1, 2, 150.00, 1),
+(2, 102, 1, 2, 150.00, 1),
+(3, 201, 2, 3, 220.00, 2),
+(4, 202, 2, 4, 300.00, 5),
+(5, 301, 3, 2, 180.00, 3);
