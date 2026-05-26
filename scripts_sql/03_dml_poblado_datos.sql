@@ -12,6 +12,13 @@ INSERT INTO huesped (id_huesped, nombres, apellidos, dni, historial, telefono) V
 (4, 'Ana', 'Flores', '70444555', 'Sin observaciones', '958444555'),
 (5, 'Jorge', 'Quispe', '70555666', 'Pagos puntuales', '958555666');
 
+INSERT INTO estadia(id_estadia, fch_ingreso, fch_salida, hr_ingreso, hr_salida, id_empleado, id_reserva) VALUES
+(1, '2026-05-10', '2026-05-12', '14:00', '11:00', 1, 1),
+(2, '2026-05-11', '2026-05-13', '15:30', '10:30', 2, 2),
+(3, '2026-05-12', '2026-05-15', '13:45', '11:15', 1, 3),
+(4, '2026-05-13', '2026-05-14', '16:00', '10:00', 3, 4),
+(5, '2026-05-14', '2026-05-17', '14:20', '11:00', 2, 5);
+
 INSERT INTO servicio (id_servicio, nombre_servicio, descripcion, precio_unitario) 
 VALUES (1, 'Hospedaje Habitacion Simple' , 'Servicio de alojamiento simple por noche', 15.00),
 (2,'Hospedaje Habitacion Doble', 'Servicio de alojamiento para dos Personas por noche', 30.00),
