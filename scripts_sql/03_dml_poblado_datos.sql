@@ -12,12 +12,6 @@ INSERT INTO huesped (id_huesped, nombres, apellidos, dni, historial, telefono) V
 (4, 'Ana', 'Flores', '70444555', 'Sin observaciones', '958444555'),
 (5, 'Jorge', 'Quispe', '70555666', 'Pagos puntuales', '958555666');
 
-INSERT INTO estadia(id_estadia, fch_ingreso, fch_salida, hr_ingreso, hr_salida, id_empleado, id_reserva) VALUES
-(1, '2026-05-10', '2026-05-12', '14:00', '11:00', 1, 1),
-(2, '2026-05-11', '2026-05-13', '15:30', '10:30', 2, 2),
-(3, '2026-05-12', '2026-05-15', '13:45', '11:15', 1, 3),
-(4, '2026-05-13', '2026-05-14', '16:00', '10:00', 3, 4),
-(5, '2026-05-14', '2026-05-17', '14:20', '11:00', 2, 5);
 
 INSERT INTO reserva (id_reserva, fch_reserva, estado_reserva, cantidad_personas, id_huesped, id_habitacion, id_empleado)
 VALUES
@@ -26,6 +20,20 @@ VALUES
 (5003, '2026-05-10', 'Confirmada', 3, 3, 3, 1),
 (5004, '2026-05-11', 'Pendiente', 4, 4, 4, 2),
 (5005, '2026-05-12', 'Confirmada', 2, 5, 5, 1);
+
+INSERT INTO estadia(id_estadia, fch_ingreso, fch_salida, hr_ingreso, hr_salida, id_empleado, id_reserva) VALUES
+(1, '2026-05-10', '2026-05-12', '14:00', '11:00', 1, 5001),
+(2, '2026-05-11', '2026-05-13', '15:30', '10:30', 2, 5002),
+(3, '2026-05-12', '2026-05-15', '13:45', '11:15', 1, 5003),
+(4, '2026-05-13', '2026-05-14', '16:00', '10:00', 3, 5004),
+(5, '2026-05-14', '2026-05-17', '14:20', '11:00', 2, 5005);
+
+INSERT INTO estd_habitacion (id_estado, nombre_estado, descripcion) VALUES
+(1, 'Disponible', 'La habitación está librea'),
+(2, 'Ocupada', 'La habitación está ocupada'),
+(3, 'Mantenimiento', 'La habitación no está disponible'),
+(4, 'Limpieza', 'La habitación está pendiente de limpieza'),
+(5, 'Reservada', 'La habitación fue reservada');
 
 INSERT INTO servicio (id_servicio, nombre_servicio, descripcion, precio_unitario) 
 VALUES (1, 'Hospedaje Habitacion Simple' , 'Servicio de alojamiento simple por noche', 15.00),
