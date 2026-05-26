@@ -26,3 +26,11 @@ VALUES (101, '2026-05-15', 45.00, 'Pagado', 5001, 1),
 (104, '2026-05-20', 50.00, 'Pendiente', 5004, 3),
 (105, '2026-05-22', 125.00, 'Pagado', 5005, 4);
 
+INSERT INTO detalle_pago (id_detalle, monto_abonado, descripcion, id_pago, id_servicio)
+VALUES (201, 45.00, 'Pago por 1 noche en habitacion simple', 101, 1),
+(202, 80.00, 'Pago por 1 noche en habitacion doble', 102, 2),
+(203, 15.50, 'Pago por consumo de chocolates del minibar', 102, 3),
+(204, 80.00, 'Abono parcial de alojamiento doble', 103, 2),
+(206, 50.00, 'Reserva de sesion de masajes terapeuicos', 104,4),
+(206, 45.00, 'Alojamiento base del huesped de la reserva 5005', 105, 1),
+(207, 80.00, 'Consumo asociado de suite doble en el mismo periodo', 105, 2);
