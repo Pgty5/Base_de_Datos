@@ -5,6 +5,13 @@ INSERT INTO empleado (id_empleado, nombre, apellido, dni, telefono, correo, id_r
 (4, 'Alhy', 'Chura', '40444555', '999444555', 'alhyplayer15@htel.com', 4, 4),
 (5, 'Diego', 'Castro', '40555666', '999555666', 'dcastro@htel.com', 5, 5);
 
+INSERT INTO huesped (id_huesped, nombres, apellidos, dni, historial, telefono) VALUES
+(1, 'Carlos', 'Mendoza', '70111222', 'Sin observaciones', '958111222'),
+(2, 'Lucia', 'Torres', '70222333', 'Cliente frecuente', '958222333'),
+(3, 'Mario', 'Ramos', '70333444', 'Solicita habitación tranquila', '958333444'),
+(4, 'Ana', 'Flores', '70444555', 'Sin observaciones', '958444555'),
+(5, 'Jorge', 'Quispe', '70555666', 'Pagos puntuales', '958555666');
+
 INSERT INTO servicio (id_servicio, nombre_servicio, descripcion, precio_unitario) 
 VALUES (1, 'Hospedaje Habitacion Simple' , 'Servicio de alojamiento simple por noche', 15.00),
 (2,'Hospedaje Habitacion Doble', 'Servicio de alojamiento para dos Personas por noche', 30.00),
