@@ -41,3 +41,10 @@ VALUES (201, 45.00, 'Pago por 1 noche en habitacion simple', 101, 1),
 (206, 50.00, 'Reserva de sesion de masajes terapeuicos', 104,4),
 (206, 45.00, 'Alojamiento base del huesped de la reserva 5005', 105, 1),
 (207, 80.00, 'Consumo asociado de suite doble en el mismo periodo', 105, 2);
+
+INSERT INTO comprobante (id_comprobante, serie, fch_emision, descripcion, id_pago)
+VALUES (301, 'B001-000041', '2026-05-15', 'Boleta de venta electronica por hospedaje rapido', 101),
+(302, 'F001-000012', '2026-05-16', 'Factura corporativa con desglose de consumos', 102),
+(303, 'B001-000042', '2026-05-18', 'Boleta emitida al cerrar estadia', 103),
+(304, 'B001-000043', '2026-05-20', 'Boleta de adelanto por transferencia', 104),
+(305, 'F001-000013', '2026-05-22', 'Factura por adelantos integrales de alojamiento', 105);
