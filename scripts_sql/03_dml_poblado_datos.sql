@@ -56,3 +56,10 @@ INSERT INTO rol_empleado (id_rol, descripcion) VALUES
 (4, 'Mantenimiento'),
 (5, 'Conserje');
 
+INSERT INTO turno (id_turno, hr_inicio, hr_fin, descripcion) VALUES
+(1, '06:00', '14:00', 'Turno mañana'),
+(2, '14:00', '22:00', 'Turno tarde'),
+(3, '22:00', '06:00', 'Turno noche'),
+(4, '08:00', '17:00', 'Turno administrativo'),
+(5, '09:00', '18:00', 'Turno mixto');
+
