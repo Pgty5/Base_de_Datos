@@ -48,3 +48,11 @@ VALUES (301, 'B001-000041', '2026-05-15', 'Boleta de venta electronica por hospe
 (303, 'B001-000042', '2026-05-18', 'Boleta emitida al cerrar estadia', 103),
 (304, 'B001-000043', '2026-05-20', 'Boleta de adelanto por transferencia', 104),
 (305, 'F001-000013', '2026-05-22', 'Factura por adelantos integrales de alojamiento', 105);
+---------------------------------------------------------------------------------------
+INSERT INTO rol_empleado (id_rol, descripcion) VALUES
+(1, 'Recepcionista'),
+(2, 'Gerente'),
+(3, 'Personal de limpieza'),
+(4, 'Mantenimiento'),
+(5, 'Conserje');
+
