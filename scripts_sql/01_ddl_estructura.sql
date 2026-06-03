@@ -14,7 +14,7 @@ CREATE TABLE huesped (
     apellidos VARCHAR(25),
     dni CHAR(8),
     historial TEXT,
-    telefono VARCHAR(15),
+    telefono VARCHAR(15)
 );
 
 CREATE TABLE reserva (
