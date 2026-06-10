@@ -1,4 +1,6 @@
---constraints tabla estadia
+-- =========================
+-- CONSTRAINTS TABLA ESTADIA
+-- =========================
 ALTER TABLE estadia
 ADD CONSTRAINT pk_estadia PRIMARY KEY (id_estadia);
 
@@ -6,24 +8,21 @@ ALTER TABLE estadia
 ALTER COLUMN fch_ingreso SET NOT NULL;
 
 ALTER TABLE estadia
+ALTER COLUMN fch_salida SET NOT NULL;
+
+ALTER TABLE estadia
 ALTER COLUMN id_empleado SET NOT NULL;
 
 ALTER TABLE estadia
 ALTER COLUMN id_reserva SET NOT NULL;
 
-ALTER TABLE estadia
-ADD CONSTRAINT fk_estadia_empleado FOREIGN KEY (id_empleado)
-REFERENCES empleado(id_empleado);
-
-ALTER TABLE estadia
-ADD CONSTRAINT fk_estadia_reserva FOREIGN KEY (id_reserva)
-REFERENCES reserva(id_reserva);
-
 ALTER TABLE estadia 
 ADD CONSTRAINT ck_estadia_fechas
 CHECK (fch_salida >= fch_ingreso);
 
---constraints tabla huesped
+-- =========================
+-- CONSTRAINTS TABLA HUESPED
+-- =========================
 ALTER TABLE huesped
 ADD CONSTRAINT pk_huesped PRIMARY KEY (id_huesped);
 
@@ -42,7 +41,9 @@ ALTER COLUMN historial SET NOT NULL;
 ALTER TABLE huesped
 ADD CONSTRAINT uk_huesped_dni UNIQUE (dni);
 
---constraints tabla reserva 
+-- =========================
+-- CONSTRAINTS TABLA RESERVA
+-- =========================
 ALTER TABLE reserva
 ADD CONSTRAINT pk_reserva PRIMARY KEY (id_reserva);
 
@@ -65,22 +66,12 @@ ALTER TABLE reserva
 ALTER COLUMN id_empleado SET NOT NULL;
 
 ALTER TABLE reserva
-ADD CONSTRAINT fk_reserva_huesped FOREIGN KEY (id_huesped)
-REFERENCES huesped(id_huesped);
-
-ALTER TABLE reserva
-ADD CONSTRAINT fk_reserva_habitacion FOREIGN KEY (id_habitacion)
-REFERENCES habitacion(id_habitacion);
-
-ALTER TABLE reserva
-ADD CONSTRAINT fk_reserva_empleado FOREIGN KEY (id_empleado)
-REFERENCES empleado(id_empleado);
-
-ALTER TABLE reserva
 ADD CONSTRAINT ck_reserva_cantidad_personas
 CHECK (cantidad_personas > 0);
 
---constraints tabla estd_habitacion
+-- =========================
+-- CONSTRAINTS TABLA ESTD_HABITACION
+-- =========================
 ALTER TABLE estd_habitacion
 ADD CONSTRAINT pk_estd_habitacion PRIMARY KEY (id_estado);
 
@@ -90,7 +81,9 @@ ALTER COLUMN nombre_estado SET NOT NULL;
 ALTER TABLE estd_habitacion
 ADD CONSTRAINT uk_estd_habitacion_nombre_estado UNIQUE (nombre_estado);
 
--- constraints tabla empleado
+-- =========================
+-- CONSTRAINTS TABLA EMPLEADO
+-- =========================
 ALTER TABLE empleado
 ADD CONSTRAINT pk_empleado PRIMARY KEY (id_empleado);
 
@@ -118,6 +111,216 @@ ADD CONSTRAINT uk_empleado_dni UNIQUE (dni);
 ALTER TABLE empleado
 ADD CONSTRAINT uk_empleado_correo UNIQUE (correo);
 
+-- =========================
+-- CONSTRAINTS TABLA CONSUMO_SRVICIO
+-- =========================
+ALTER TABLE consumo_srvicio
+ADD CONSTRAINT pk_consumo_srvicio PRIMARY KEY (id_consumo_srvc);
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN fch_consumo SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN cantidad SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN sub_total SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN id_estadia SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN id_servicio SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ALTER COLUMN id_empleado SET NOT NULL;
+
+ALTER TABLE consumo_srvicio
+ADD CONSTRAINT ck_consumo_srvicio_cantidad
+CHECK (cantidad > 0);
+
+ALTER TABLE consumo_srvicio
+ADD CONSTRAINT ck_consumo_srvicio_sub_total
+CHECK (sub_total >= 0);
+
+-- =========================
+-- CONSTRAINTS TABLA ROL_EMPLEADO
+-- =========================
+ALTER TABLE rol_empleado
+ADD CONSTRAINT pk_rol_empleado PRIMARY KEY (id_rol);
+
+ALTER TABLE rol_empleado
+ALTER COLUMN descripcion SET NOT NULL;
+
+-- =========================
+-- CONSTRAINTS TABLA TURNO
+-- =========================
+ALTER TABLE turno
+ADD CONSTRAINT pk_turno PRIMARY KEY (id_turno);
+
+ALTER TABLE turno
+ALTER COLUMN hr_inicio SET NOT NULL;
+
+ALTER TABLE turno
+ALTER COLUMN hr_fin SET NOT NULL;
+
+ALTER TABLE turno
+ALTER COLUMN descripcion SET NOT NULL;
+
+-- =========================
+-- CONSTRAINTS TABLA HABITACION
+-- =========================
+ALTER TABLE habitacion
+ADD CONSTRAINT pk_habitacion PRIMARY KEY (id_habitacion);
+
+ALTER TABLE habitacion
+ALTER COLUMN numero_habitacion SET NOT NULL;
+
+ALTER TABLE habitacion
+ALTER COLUMN piso SET NOT NULL;
+
+ALTER TABLE habitacion
+ALTER COLUMN capacidad SET NOT NULL;
+
+ALTER TABLE habitacion
+ALTER COLUMN precio_base SET NOT NULL;
+
+ALTER TABLE habitacion
+ALTER COLUMN id_estado SET NOT NULL;
+
+ALTER TABLE habitacion
+ADD CONSTRAINT uk_habitacion_numero UNIQUE (numero_habitacion);
+
+-- =========================
+-- CONSTRAINTS TABLA MANTENIMIENTO
+-- =========================
+ALTER TABLE mantenimiento
+ADD CONSTRAINT pk_mantenimiento PRIMARY KEY (id_mantenimiento);
+
+ALTER TABLE mantenimiento
+ALTER COLUMN fch_inicio SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ALTER COLUMN fch_fin SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ALTER COLUMN motivo SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ALTER COLUMN estado_mantenimiento SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ALTER COLUMN id_habitacion SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ALTER COLUMN id_empleado SET NOT NULL;
+
+ALTER TABLE mantenimiento
+ADD CONSTRAINT ck_mantenimiento_fechas
+CHECK (fch_fin >= fch_inicio);
+
+-- =========================
+-- CONSTRAINTS TABLA CANCELACION_RESERVA
+-- =========================
+ALTER TABLE cancelacion_reserva
+ADD CONSTRAINT pk_cancelacion_reserva PRIMARY KEY (id_cancelacion);
+
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN motivo SET NOT NULL;
+
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN fecha SET NOT NULL;
+
+ALTER TABLE cancelacion_reserva
+ALTER COLUMN id_reserva SET NOT NULL;
+
+-- =========================
+-- CONSTRAINTS TABLA SERVICIO
+-- =========================
+ALTER TABLE servicio
+ALTER COLUMN id_servicio SET NOT NULL,
+ALTER COLUMN nombre_servicio SET NOT NULL,
+ALTER COLUMN precio_unitario SET NOT NULL;
+
+ALTER TABLE servicio
+ADD CONSTRAINT pk_servicio PRIMARY KEY (id_servicio),
+ADD CONSTRAINT uk_servicio_nombre UNIQUE (nombre_servicio),
+ADD CONSTRAINT ck_servicio_precio CHECK (precio_unitario >= 0);
+
+-- =========================
+-- CONSTRAINTS TABLA MTD_PAGO
+-- =========================
+ALTER TABLE mtd_pago
+ALTER COLUMN id_metodo SET NOT NULL,
+ALTER COLUMN nombre_pago SET NOT NULL;
+
+ALTER TABLE mtd_pago
+ADD CONSTRAINT pk_mtd_pago PRIMARY KEY (id_metodo),
+ADD CONSTRAINT uk_mtd_pago_nombre UNIQUE (nombre_pago);
+
+-- =========================
+-- CONSTRAINTS TABLA PAGO
+-- =========================
+ALTER TABLE pago
+ALTER COLUMN id_pago SET NOT NULL,
+ALTER COLUMN fch_pago SET NOT NULL,
+ALTER COLUMN monto_total SET NOT NULL,
+ALTER COLUMN id_reserva SET NOT NULL,
+ALTER COLUMN id_metodo SET NOT NULL;
+
+ALTER TABLE pago
+ADD CONSTRAINT pk_pago PRIMARY KEY (id_pago),
+ADD CONSTRAINT ck_pago_monto CHECK (monto_total >= 0);
+
+-- =========================
+-- CONSTRAINTS TABLA DETALLE_PAGO
+-- =========================
+ALTER TABLE detalle_pago
+ALTER COLUMN id_detalle SET NOT NULL, 
+ALTER COLUMN monto_abonado SET NOT NULL,
+ALTER COLUMN id_pago SET NOT NULL,
+ALTER COLUMN id_servicio SET NOT NULL;
+
+ALTER TABLE detalle_pago
+ADD CONSTRAINT pk_detalle_pago PRIMARY KEY (id_detalle);
+
+-- =========================
+-- CONSTRAINTS TABLA COMPROBANTE
+-- =========================
+ALTER TABLE comprobante
+ALTER COLUMN id_comprobante SET NOT NULL,
+ALTER COLUMN serie SET NOT NULL,
+ALTER COLUMN fch_emision SET NOT NULL,
+ALTER COLUMN id_pago SET NOT NULL;
+
+ALTER TABLE comprobante
+ADD CONSTRAINT pk_comprobante PRIMARY KEY (id_comprobante),
+ADD CONSTRAINT uk_comprobante_serie UNIQUE (serie);
+
+-- =========================
+-- FOREIGN KEYS
+-- =========================
+
+ALTER TABLE estadia
+ADD CONSTRAINT fk_estadia_empleado FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
+ALTER TABLE estadia
+ADD CONSTRAINT fk_estadia_reserva FOREIGN KEY (id_reserva)
+REFERENCES reserva(id_reserva);
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_huesped FOREIGN KEY (id_huesped)
+REFERENCES huesped(id_huesped);
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_habitacion FOREIGN KEY (id_habitacion)
+REFERENCES habitacion(id_habitacion);
+
+ALTER TABLE reserva
+ADD CONSTRAINT fk_reserva_empleado FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
 ALTER TABLE empleado
 ADD CONSTRAINT fk_empleado_rol FOREIGN KEY (id_rol)
 REFERENCES rol_empleado(id_rol);
@@ -126,156 +329,50 @@ ALTER TABLE empleado
 ADD CONSTRAINT fk_empleado_turno FOREIGN KEY (id_turno)
 REFERENCES turno(id_turno);
 
--- constraints tabla consumo_srvc
-ALTER TABLE consumo_srvc
-ADD CONSTRAINT pk_consumo_srvc PRIMARY KEY (id_consumo_srvc);
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN fch_consumo SET NOT NULL;
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN cantidad SET NOT NULL;
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN sub_total SET NOT NULL;
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN id_estadia SET NOT NULL;
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN id_servicio SET NOT NULL;
-
-ALTER TABLE consumo_srvc
-ALTER COLUMN id_empleado SET NOT NULL;
-
-ALTER TABLE consumo_srvc
+ALTER TABLE consumo_srvicio
 ADD CONSTRAINT fk_consumo_srvicio_estadia FOREIGN KEY (id_estadia)
 REFERENCES estadia(id_estadia);
 
-ALTER TABLE consumo_srvc
+ALTER TABLE consumo_srvicio
 ADD CONSTRAINT fk_consumo_srvicio_servicio FOREIGN KEY (id_servicio)
 REFERENCES servicio(id_servicio);
 
-ALTER TABLE consumo_srvc
+ALTER TABLE consumo_srvicio
 ADD CONSTRAINT fk_consumo_srvicio_empleado FOREIGN KEY (id_empleado)
 REFERENCES empleado(id_empleado);
 
-ALTER TABLE consumo_srvc
-ADD CONSTRAINT ck_consumo_srvicio_cantidad
-CHECK (cantidad > 0);
+ALTER TABLE habitacion
+ADD CONSTRAINT fk_habitacion_estado FOREIGN KEY (id_estado)
+REFERENCES estd_habitacion(id_estado);
 
-ALTER TABLE consumo_srvc
-ADD CONSTRAINT ck_consumo_srvicio_sub_total
-CHECK (sub_total >= 0);
--- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°EMPLEADO
-ALTER TABLE rol_empleado
-ADD CONSTRAINT pk_rol_empleado PRIMARY KEY (id_rol);
-ALTER TABLE rol_empleado
-ALTER COLUMN descripcion SET NOT NULL;
--- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°TURNO
-ALTER TABLE turno
-ADD CONSTRAINT pk_turno PRIMARY KEY (id_turno);
-ALTER TABLE turno
-ALTER COLUMN hr_inicio SET NOT NULL;
-ALTER TABLE turno
-ALTER COLUMN hr_fin SET NOT NULL;
-ALTER TABLE turno
-ALTER COLUMN descripcion SET NOT NULL;
--- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°HABITACION
-ALTER TABLE habitacion
-ADD CONSTRAINT pk_habitacion PRIMARY KEY (id_habitacion);
-ALTER TABLE habitacion
-ALTER COLUMN nro_habitacion SET NOT NULL;
-ALTER TABLE habitacion
-ALTER COLUMN piso SET NOT NULL;
-ALTER TABLE habitacion
-ALTER COLUMN capacidad SET NOT NULL;
-ALTER TABLE habitacion
-ALTER COLUMN precio_base SET NOT NULL;
-ALTER TABLE habitacion
-ALTER COLUMN id_estado SET NOT NULL;
-ALTER TABLE habitacion
-ADD CONSTRAINT uk_habitacion UNIQUE (nro_habitacion);
--- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°MANTENIMIENTO
 ALTER TABLE mantenimiento
-ADD CONSTRAINT pk_mantenimiento PRIMARY KEY (id_mantenimiento);
-ALTER TABLE mantenimiento
-ALTER COLUMN fch_inicio SET NOT NULL;
-ALTER TABLE mantenimiento
-ALTER COLUMN fch_fin SET NOT NULL;
-ALTER TABLE mantenimiento
-ALTER COLUMN motivo SET NOT NULL;
-ALTER TABLE mantenimiento
-ALTER COLUMN estado_mant SET NOT NULL;
-ALTER TABLE mantenimiento
-ALTER COLUMN id_habitacion SET NOT NULL;
-ALTER TABLE mantenimiento
-ALTER COLUMN id_empleado SET NOT NULL;
-ALTER TABLE mantenimiento
-ADD CONSTRAINT ck_mantenimiento_fechas
-CHECK (fch_fin >= fch_inicio);
+ADD CONSTRAINT fk_mantenimiento_habitacion FOREIGN KEY (id_habitacion)
+REFERENCES habitacion(id_habitacion);
 
--- °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°CANCELACION
+ALTER TABLE mantenimiento
+ADD CONSTRAINT fk_mantenimiento_empleado FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
 ALTER TABLE cancelacion_reserva
-ADD CONSTRAINT pk_cancelacion_reserva PRIMARY KEY (id_cancelacion);
-ALTER TABLE cancelacion_reserva
-ALTER COLUMN motivo SET NOT NULL;
-ALTER TABLE cancelacion_reserva
-ALTER COLUMN fecha SET NOT NULL;
-ALTER TABLE cancelacion_reserva
-ALTER COLUMN id_reserva SET NOT NULL;
+ADD CONSTRAINT fk_cancelacion_reserva FOREIGN KEY (id_reserva)
+REFERENCES reserva(id_reserva);
 
---°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°servicio
-ALTER TABLE servicio
-ALTER COLUMN id_servicio SET NOT NULL,
-ALTER COLUMN nombre_servicio SET NOT NULL,
-ALTER COLUMN precio_unitario SET NOT NULL;
-ALTER TABLE
-ADD CONSTRAINT pk_servicio PRIMARY KEY (id_servicio),
-ADD CONSTRAINT uk_servicio_nombre UNIQUE (nombre_servicio),
-ADD CONSTRAINT ck_servicio_precio CHECK (precio_unitario >= 0);
-
---°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°mtd_pago
-ALTER TABLE mtd_pago
-ALTER COLUMN id_metodo SET NOT NULL,
-ALTER COLUMN nombre_pago SET NOT NULL;
-ALTER TABLE mtd_pago
-ADD CONSTRAINT pk_mtd_pago PRIMARY KEY (id_metodo),
-ADD  CONSTRAINT uk_mtd_pago_nombre UNIQUE (nombre_pago);
-
---°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°pago
 ALTER TABLE pago
-ALTER COLUMN id_pago SET NOT NULL,
-ALTER COLUMN fch_pago SET NOT NULL,
-ALTER COLUMN monto_total SET NOT NULL,
-ALTER COLUMN id_reserva SET NOT NULL,
-ALTER COLUMN id:metodo SET NOT NULL;
+ADD CONSTRAINT fk_pago_reserva FOREIGN KEY (id_reserva)
+REFERENCES reserva(id_reserva);
+
 ALTER TABLE pago
-ADD CONSTRAINT pk_pago PRIMARY KEY (id_pago),
-ADD CONSTRAINT ck_pago_monto CHECK (monto_total>=0),
 ADD CONSTRAINT fk_pago_mtd_pago FOREIGN KEY (id_metodo)
 REFERENCES mtd_pago(id_metodo);
---°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°detalle_pago
+
 ALTER TABLE detalle_pago
-ALTER COLUMN id_detalle SET NOT NULL, 
-ALTER COLUMN monto_abonado SET NOT NULL,
-ALTER COLUMN id_pago SET NOT NULL,
-ALTER COLUMN id_servicio SET NOT NULL;
-ALTER TABLE detalle_pago
-ADD CONSTRAINT pk_detalle_pago PRIMARY KEY (id_detalle),
 ADD CONSTRAINT fk_detalle_pago_pago FOREIGN KEY (id_pago)
-REFERENCES pago(id_pago),
+REFERENCES pago(id_pago);
+
+ALTER TABLE detalle_pago
 ADD CONSTRAINT fk_detalle_pago_servicio FOREIGN KEY (id_servicio)
 REFERENCES servicio(id_servicio);
 
---°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°comprobante
 ALTER TABLE comprobante
-ALTER COLUMN id_comprobante SET NOT NULL,
-ALTER COLUMN serie SET NOT NULL,
-ALTER COLUMN fch emision SET NOT NULL,
-ALTER COLUMN id_pago SET NOT NULL;
-ALTER TABLE comprobante
-ADD CONSTRAINT pk_comprobante PRIMARY KEY (id_comprobante),
-ADD CONSTRAINT uk_comprobante UNIQUE (serie),
 ADD CONSTRAINT fk_comprobante_pago FOREIGN KEY (id_pago)
 REFERENCES pago(id_pago);
