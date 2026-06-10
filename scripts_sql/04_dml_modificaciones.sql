@@ -1,11 +1,57 @@
-UPDATE pago
-SET estado_pago= 'Pagado'
-WHERE id_pago= 104;
-----------------------------------------------
-UPDATE cancelacion_reserva
-SET penalidad = 0.00
-WHERE id_cancelacion = 4;
 
-UPDATE reserva
-SET estado_reserva = 'Cancelada'
-WHERE id_reserva = 5004;
+
+BEGIN;
+
+INSERT INTO reserva (
+    id_reserva,
+    fch_reserva,
+    estado_reserva,
+    cantidad_personas,
+    id_huesped,
+    id_habitacion,
+    id_empleado
+)
+VALUES (
+    5006,
+    CURRENT_DATE,
+    'Confirmada',
+    2,
+    1,
+    2,
+    1
+);
+
+INSERT INTO pago (
+    id_pago,
+    fch_pago,
+    monto_total,
+    estado_pago,
+    id_reserva,
+    id_metodo
+)
+VALUES (
+    106,
+    CURRENT_DATE,
+    150.00,
+    'Pagado',
+    5006,
+    1
+);
+
+
+INSERT INTO comprobante (
+    id_comprobante,
+    serie,
+    fch_emision,
+    descripcion,
+    id_pago
+)
+VALUES (
+    306,
+    'B001-000044',
+    CURRENT_DATE,
+    'Comprobante generado por nueva reserva',
+    106
+);
+
+COMMIT;
