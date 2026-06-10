@@ -12,7 +12,4 @@ WHERE p.estado_pago = 'Pagado'
 GROUP BY h.id_huesped, h.nombre, h.apellido
 HAVING SUM(p.monto_total) > 200.00
 ORDER BY monto_acumulado DESC
-)
-TO 'reporte_huespedes_vip.csv'
-WITH CSV HEADER DELIMITER ','
-ENCODING 'UTF8';
+) TO 'reporte_huespedes_vip.csv' WITH (FORMAT CSV, HEADER, DELIMITER ',', ENCODING 'UTF8');
