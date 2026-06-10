@@ -10,8 +10,8 @@ CREATE TABLE estadia (
 
 CREATE TABLE huesped (
     id_huesped INT,
-    nombres VARCHAR(25),
-    apellidos VARCHAR(25),
+    nombre VARCHAR(25),
+    apellido VARCHAR(25),
     dni CHAR(8),
     historial TEXT,
     telefono VARCHAR(15)
