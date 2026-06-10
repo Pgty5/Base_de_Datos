@@ -20,11 +20,11 @@ CREATE TABLE huesped (
 CREATE TABLE reserva (
     id_reserva INT,
     fch_reserva DATE,
-    fch_inicio DATE,
-    fch_fin DATE,
     estado_reserva VARCHAR(20),
+    cantidad_personas INT,
     id_huesped INT,
-    id_habitacion INT
+    id_habitacion INT,
+    id_empleado INT
 );
 
 CREATE TABLE estd_habitacion (
@@ -39,7 +39,7 @@ CREATE TABLE empleado (
     apellido VARCHAR(25),
     dni CHAR(8),
     telefono VARCHAR(15),
-    correo VARCHAR(25),
+    correo VARCHAR(100),
     id_rol INT,
     id_turno INT
 );
@@ -48,48 +48,52 @@ CREATE TABLE consumo_srvicio (
     id_consumo_srvc INT,
     fch_consumo DATE,
     cantidad INT,
-    sub_total NUMERIC(5,2),
+    sub_total NUMERIC(10,2),
     descripcion TEXT,
     id_estadia INT,
     id_servicio INT,
     id_empleado INT
 );
-CREATE TABLE rol_empleado(
-    id_rol INTEGER,
+
+CREATE TABLE rol_empleado (
+    id_rol INT,
     descripcion VARCHAR(50)
 );
+
 CREATE TABLE turno (
-    id_turno  INTEGER,
+    id_turno INT,
     hr_inicio TIME,
     hr_fin TIME,
     descripcion VARCHAR(100)
 );
+
 CREATE TABLE habitacion (
-    id_habitacion INTEGER,
-    nro_habitacion INTEGER,
-    piso INTEGER,
-    capacidad  INTEGER,
+    id_habitacion INT,
+    numero_habitacion INT,
+    piso INT,
+    capacidad INT,
     precio_base NUMERIC(8,2),
-    id_estado INTEGER
+    id_estado INT
 );
+
 CREATE TABLE mantenimiento (
-    id_mantenimiento     INTEGER,
-    fch_inicio  DATE,
-    fch_fin  DATE,
-    motivo  VARCHAR(100),
-    descripcion     VARCHAR(200),
-    estado_mant      VARCHAR(50),
-    costo      NUMERIC(8,2),
-    id_habitacion    INTEGER,
-    id_empleado         INTEGER
+    id_mantenimiento INT,
+    fch_inicio DATE,
+    fch_fin DATE,
+    motivo VARCHAR(100),
+    descripcion VARCHAR(200),
+    estado_mantenimiento VARCHAR(50),
+    costo NUMERIC(8,2),
+    id_habitacion INT,
+    id_empleado INT
 );
 
 CREATE TABLE cancelacion_reserva (
-    id_cancelacion INTEGER,
-    motivo  VARCHAR(200),
-    fecha    DATE,
-    penalidad     NUMERIC(8,2),
-    id_reserva    INTEGER
+    id_cancelacion INT,
+    motivo VARCHAR(200),
+    fecha DATE,
+    penalidad NUMERIC(8,2),
+    id_reserva INT
 );
 
 CREATE TABLE servicio (
@@ -129,6 +133,4 @@ CREATE TABLE comprobante (
     descripcion TEXT,
     id_pago INT
 );
-    
-
 
