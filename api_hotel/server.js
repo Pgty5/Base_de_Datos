@@ -281,3 +281,32 @@ app.delete("/reservas-completas/:id", async (req, res) => {
         client.release();
     }
 });
+
+// REPORTE CON GROUP BY Y HAVING
+app.get("/reportes/consumos", async (req, res) => {
+    try {
+        const sql = `
+            SELECT
+                e.nombre AS nombre_empleado,
+                e.apellido AS apellido_empleado,
+                s.nombre_servicio,
+                COUNT(c.id_consumo_srvc) AS cantidad_consumos,
+                SUM(c.cantidad) AS total_cantidad,
+                SUM(c.sub_total) AS total_recaudado
+            FROM consumo_srvicio c
+            INNER JOIN servicio s ON c.id_servicio = s.id_servicio
+            INNER JOIN empleado e ON c.id_empleado = e.id_empleado
+            WHERE c.id_empleado = 2
+            GROUP BY e.nombre, e.apellido, s.nombre_servicio
+            HAVING SUM(c.sub_total) >= 20
+            ORDER BY total_recaudado DESC;
+        `;
+
+        const resultado = await pool.query(sql);
+        res.json(resultado.rows);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ mensaje: "Error al generar reporte" });
+    }
+});
