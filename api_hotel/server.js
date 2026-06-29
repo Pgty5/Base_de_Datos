@@ -310,3 +310,41 @@ app.get("/reportes/consumos", async (req, res) => {
         res.status(500).json({ mensaje: "Error al generar reporte" });
     }
 });
+
+// EXPORTAR REPORTE A CSV
+app.get("/reportes/consumos/exportar", async (req, res) => {
+    try {
+        const sql = `
+            SELECT
+                e.nombre AS nombre_empleado,
+                e.apellido AS apellido_empleado,
+                s.nombre_servicio,
+                COUNT(c.id_consumo_srvc) AS cantidad_consumos,
+                SUM(c.cantidad) AS total_cantidad,
+                SUM(c.sub_total) AS total_recaudado
+            FROM consumo_srvicio c
+            INNER JOIN servicio s ON c.id_servicio = s.id_servicio
+            INNER JOIN empleado e ON c.id_empleado = e.id_empleado
+            WHERE c.id_empleado = 2
+            GROUP BY e.nombre, e.apellido, s.nombre_servicio
+            HAVING SUM(c.sub_total) >= 20
+            ORDER BY total_recaudado DESC;
+        `;
+
+        const resultado = await pool.query(sql);
+
+        let csv = "nombre_empleado,apellido_empleado,nombre_servicio,cantidad_consumos,total_cantidad,total_recaudado\n"; // encabezados
+        //resueltado.rows = arreeglo de objetos de js , cada objeto representa una fila 
+        resultado.rows.forEach(fila => { // fila es cada elemento de resultado.rows
+            csv += `${fila.nombre_empleado},${fila.apellido_empleado},${fila.nombre_servicio},${fila.cantidad_consumos},${fila.total_cantidad},${fila.total_recaudado}\n`;
+        }); // Crea una línea de texto usando los valores de cada propiedad de fila, separados por comas.
+
+        res.setHeader("Content-Type", "text/csv"); // asegurar que se esta enviando un archivo csv para que no lo interprete como texto
+        res.setHeader("Content-Disposition", "attachment; filename=reporte_consumos.csv"); //descargar esto como archivo con el nombre 
+        res.send(csv);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ mensaje: "Error al exportar reporte" });
+    }
+});
