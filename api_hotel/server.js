@@ -348,3 +348,54 @@ app.get("/reportes/consumos/exportar", async (req, res) => {
         res.status(500).json({ mensaje: "Error al exportar reporte" });
     }
 });
+// GET: listar reservas completas
+app.get("/reservas-completas", async (req, res) => {
+    try {
+        const sql = `
+            SELECT
+                r.id_reserva,
+                r.fch_reserva,
+                r.estado_reserva,
+                r.cantidad_personas,
+
+                r.id_huesped,
+                r.id_habitacion,
+                r.id_empleado,
+
+                es.id_estadia,
+                es.fch_ingreso,
+                es.fch_salida,
+                es.hr_ingreso,
+                es.hr_salida,
+
+                p.id_pago,
+                p.fch_pago,
+                p.monto_total,
+                p.estado_pago,
+                p.id_metodo,
+
+                dp.id_detalle,
+                dp.monto_abonado,
+                dp.descripcion AS descripcion_detalle,
+                dp.id_servicio
+            FROM reserva r
+            INNER JOIN estadia es 
+                ON r.id_reserva = es.id_reserva
+            INNER JOIN pago p 
+                ON r.id_reserva = p.id_reserva
+            INNER JOIN detalle_pago dp 
+                ON p.id_pago = dp.id_pago
+            ORDER BY r.id_reserva DESC;
+        `;
+
+        const resultado = await pool.query(sql);
+        res.json(resultado.rows);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            mensaje: "Error al listar reservas completas",
+            error: error.message
+        });
+    }
+});
