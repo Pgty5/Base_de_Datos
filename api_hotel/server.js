@@ -12,7 +12,95 @@ const pool = new Pool({
     password: "1234",
     port: 5432
 });
+// TRANSACCION: INSERTAR RESERVA COMPLETA
+app.post("/reservas-completas", async (req, res) => {
+    const client = await pool.connect();
 
+    try {
+        const datos = req.body;
+
+        await client.query("BEGIN");
+
+        const reserva = await client.query(`
+            INSERT INTO reserva
+            (fch_reserva, estado_reserva, cantidad_personas, id_huesped, id_habitacion, id_empleado)
+            VALUES ($1,$2,$3,$4,$5,$6)
+            RETURNING id_reserva
+        `,[
+            datos.fch_reserva,
+            datos.estado_reserva,
+            datos.cantidad_personas,
+            datos.id_huesped,
+            datos.id_habitacion,
+            datos.id_empleado
+        ]);
+
+        const id_reserva = reserva.rows[0].id_reserva;
+
+        const estadia = await client.query(`
+            INSERT INTO estadia
+            (fch_ingreso,fch_salida,hr_ingreso,hr_salida,id_empleado,id_reserva)
+            VALUES ($1,$2,$3,$4,$5,$6)
+            RETURNING id_estadia
+        `,[
+            datos.fch_ingreso,
+            datos.fch_salida,
+            datos.hr_ingreso,
+            datos.hr_salida,
+            datos.id_empleado,
+            id_reserva
+        ]);
+
+        const pago = await client.query(`
+            INSERT INTO pago
+            (fch_pago,monto_total,estado_pago,id_reserva,id_metodo)
+            VALUES ($1,$2,$3,$4,$5)
+            RETURNING id_pago
+        `,[
+            datos.fch_pago,
+            datos.monto_total,
+            datos.estado_pago,
+            id_reserva,
+            datos.id_metodo
+        ]);
+
+        const id_pago = pago.rows[0].id_pago;
+
+        const detalle = await client.query(`
+            INSERT INTO detalle_pago
+            (monto_abonado,descripcion,id_pago,id_servicio)
+            VALUES ($1,$2,$3,$4)
+            RETURNING id_detalle
+        `,[
+            datos.monto_abonado,
+            datos.descripcion,
+            id_pago,
+            datos.id_servicio
+        ]);
+
+        await client.query("COMMIT");
+
+        res.json({
+            mensaje:"Reserva registrada correctamente",
+            id_reserva:id_reserva,
+            id_estadia:estadia.rows[0].id_estadia,
+            id_pago:id_pago,
+            id_detalle:detalle.rows[0].id_detalle
+        });
+
+    } catch(error){
+
+        await client.query("ROLLBACK");
+
+        res.status(500).json({
+            mensaje:"Error en la transacción",
+            error:error.message
+        });
+
+    } finally{
+        client.release();
+    }
+});
 
 
 
