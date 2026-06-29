@@ -102,7 +102,116 @@ app.post("/reservas-completas", async (req, res) => {
     }
 });
 
+// PUT: actualizar reserva completa
+app.put("/reservas-completas/:id", async (req, res) => {
 
+    const client = await pool.connect();
+
+    try{
+
+        const id_reserva = req.params.id;
+        const datos = req.body;
+
+        await client.query("BEGIN");
+
+        const reserva = await client.query(`
+            UPDATE reserva
+            SET
+                fch_reserva=$1,
+                estado_reserva=$2,
+                cantidad_personas=$3,
+                id_huesped=$4,
+                id_habitacion=$5,
+                id_empleado=$6
+            WHERE id_reserva=$7
+            RETURNING id_reserva
+        `,[
+            datos.fch_reserva,
+            datos.estado_reserva,
+            datos.cantidad_personas,
+            datos.id_huesped,
+            datos.id_habitacion,
+            datos.id_empleado,
+            id_reserva
+        ]);
+
+        if(reserva.rows.length===0){
+            await client.query("ROLLBACK");
+            return res.status(404).json({mensaje:"Reserva no encontrada"});
+        }
+
+        await client.query(`
+            UPDATE estadia
+            SET
+                fch_ingreso=$1,
+                fch_salida=$2,
+                hr_ingreso=$3,
+                hr_salida=$4,
+                id_empleado=$5
+            WHERE id_reserva=$6
+        `,[
+            datos.fch_ingreso,
+            datos.fch_salida,
+            datos.hr_ingreso,
+            datos.hr_salida,
+            datos.id_empleado,
+            id_reserva
+        ]);
+
+        const pago = await client.query(`
+            UPDATE pago
+            SET
+                fch_pago=$1,
+                monto_total=$2,
+                estado_pago=$3,
+                id_metodo=$4
+            WHERE id_reserva=$5
+            RETURNING id_pago
+        `,[
+            datos.fch_pago,
+            datos.monto_total,
+            datos.estado_pago,
+            datos.id_metodo,
+            id_reserva
+        ]);
+
+        const id_pago = pago.rows[0].id_pago;
+
+        await client.query(`
+            UPDATE detalle_pago
+            SET
+                monto_abonado=$1,
+                descripcion=$2,
+                id_servicio=$3
+            WHERE id_pago=$4
+        `,[
+            datos.monto_abonado,
+            datos.descripcion,
+            datos.id_servicio,
+            id_pago
+        ]);
+
+        await client.query("COMMIT");
+
+        res.json({
+            mensaje:"Reserva actualizada correctamente",
+            id_reserva:id_reserva
+        });
+
+    }catch(error){
+
+        await client.query("ROLLBACK");
+
+        res.status(500).json({
+            mensaje:"Error al actualizar",
+            error:error.message
+        });
+
+    }finally{
+        client.release();
+    }
+
+});
 
 
 
